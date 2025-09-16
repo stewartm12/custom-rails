@@ -2,7 +2,70 @@ AllCops:
   TargetRubyVersion: 3.2
 
 Style/StringLiterals:
-  EnforcedStyle: double_quotes
+  EnforcedStyle: single_quotes
+  Enabled: true
 
-Style/StringLiteralsInInterpolation:
-  EnforcedStyle: double_quotes
+Style/Documentation:
+  Enabled: false  # Don't require top-level class/module docs in Rails apps
+
+Style/FrozenStringLiteralComment:
+  Enabled: false  # Modern Ruby defaults to frozen strings (3.0+) 
+
+Style/SymbolArray:
+  Enabled: true
+
+Style/WordArray:
+  Enabled: true
+
+Style/GlobalStdStream:
+  Enabled: true  # Prefer $stdout/$stderr
+
+Lint/UnusedBlockArgument:
+  Enabled: true
+
+Style/AndOr:
+  EnforcedStyle: always # Prefer the use of `&&` and `||` over `and` and `or` for control flow
+
+Style/ClassCheck:
+  Enabled: true # Prefer `is_a?` and `kind_of?` over comparing classes with `==`.
+
+Layout/SpaceAroundOperators:
+  Enabled: true
+  AllowForAlignment: true
+  EnforcedStyleForExponentOperator: no_space
+
+# ---- Layout Rules ----
+
+Layout/LineLength:
+  Max: 100  # Reasonable width for Rails teams, can be 120 if preferred
+
+Layout/SpaceInsideArrayLiteralBrackets:
+  EnforcedStyle: no_space # Enforce no spaces immediately inside array literal brackets.
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented # Enforce indented alignment for multiline method calls.
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: true # Require an empty line after a guard clause.
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: true # Require a single empty line around a class or module body.
+
+Layout/ExtraSpacing:
+  AllowForAlignment: true # Allow extra spacing for alignment.
+
+# ---- Metrics (loosen where needed for Rails) ----
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*' # allow long RSpec blocks
+    - 'config/routes.rb' # allow long routes files
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/ModuleLength:
+  Max: 200
